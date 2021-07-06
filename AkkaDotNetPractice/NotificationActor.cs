@@ -31,8 +31,6 @@ namespace AkkaDotNetPractice
             _actor.Tell(message);
 
             _actor.GracefulStop(TimeSpan.Zero);
-
-            //_notification.sendMessage(message?.ToString());
         }
 
         protected override void PreStart()
