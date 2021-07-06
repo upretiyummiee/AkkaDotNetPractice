@@ -6,12 +6,12 @@ namespace AkkaDotNetPractice
 {
     class NotificationActor : UntypedActor
     {
-        private readonly IEmailNotification _notification;
+        /*private readonly IEmailNotification _notification;
 
         public NotificationActor(IEmailNotification notification) 
         {
             _notification = notification;
-        }
+        }*/
 
         protected override void OnReceive(object message)
         {
