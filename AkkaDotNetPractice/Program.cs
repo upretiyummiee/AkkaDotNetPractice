@@ -14,8 +14,9 @@ namespace AkkaDotNetPractice
         {
 
             var services = new ServiceCollection();
-            services.AddSingleton<IEmailNotification, EmailNotification>();
-            services.AddSingleton<NotificationActor>();
+            services.AddScoped<IEmailNotification, EmailNotification>();
+            services.AddScoped<NotificationActor>();
+            services.AddScoped<ChildNotificationActor>();
             var serviceprovider = services.BuildServiceProvider();
 
             var detail = new Detail 
@@ -28,7 +29,7 @@ namespace AkkaDotNetPractice
             using var actorSystem = ActorSystem.Create("MyActor");
             actorSystem.UseServiceProvider(serviceprovider);
             var actor = actorSystem.ActorOf(actorSystem.DI().Props<NotificationActor>());
-            actor.Tell("Hello there");
+            actor.Tell(detail);
             _ = Console.ReadKey();
             actorSystem.Stop(actor);
         }
